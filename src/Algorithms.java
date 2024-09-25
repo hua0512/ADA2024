@@ -62,7 +62,6 @@ public class Algorithms {
   private static void f(int[] v, int k, int n, TraceData data) {
     while (2 * k <= n) {
       int j = 2 * k;
-      data.incrementarComps();
       if (j < n) {
         data.incrementarComps();
         if (v[j - 1] < v[j]) {
@@ -99,7 +98,7 @@ public class Algorithms {
     }
     for (int i = tam - 1; i >= 0; i--) {
       // TODO : DUDA, esta operacion se cuenta como asignacion?.
-      data.incrementarAsigs(2);
+      data.incrementarAsigs(4);
       w[c[v[i]] - 1] = v[i];
       c[v[i]] = c[v[i]] - 1;
     }
@@ -116,6 +115,7 @@ public class Algorithms {
       data.incrementarComps();
       if (v[i] > m) {
         m = v[i];
+        data.incrementarAsigs();
       }
     }
     return m;
