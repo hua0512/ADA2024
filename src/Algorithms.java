@@ -40,7 +40,7 @@ public class Algorithms {
         if (i == 0) {
           i = 1;
         }
-        data.incrementarAsigs(2);
+        data.incrementarAsigs(3);
       }
     }
   }
@@ -63,8 +63,11 @@ public class Algorithms {
     while (2 * k <= n) {
       int j = 2 * k;
       data.incrementarComps();
-      if ((j < n) && (v[j - 1] < v[j])) {
-        j++;
+      if (j < n) {
+        data.incrementarComps();
+        if (v[j - 1] < v[j]) {
+          j++;
+        }
       }
       data.incrementarComps();
       if (v[k - 1] >= v[j - 1]) {
@@ -79,7 +82,7 @@ public class Algorithms {
     int temp = v[i - 1];
     v[i - 1] = v[j - 1];
     v[j - 1] = temp;
-    data.incrementarAsigs(2);
+    data.incrementarAsigs(3);
   }
 
   public static void ordena3(int[] v, int tam, TraceData data) {
@@ -88,11 +91,15 @@ public class Algorithms {
     int[] w = new int[tam];
     for (int i = 0; i < tam; i++) {
       c[v[i]] = c[v[i]] + 1;
+      // TODO : DUDA, esta operacion se cuenta como asignacion?.
+      data.incrementarAsigs(2);
     }
     for (int i = 1; i < m + 1; i++) {
       c[i] = c[i] + c[i - 1];
     }
     for (int i = tam - 1; i >= 0; i--) {
+      // TODO : DUDA, esta operacion se cuenta como asignacion?.
+      data.incrementarAsigs(2);
       w[c[v[i]] - 1] = v[i];
       c[v[i]] = c[v[i]] - 1;
     }
