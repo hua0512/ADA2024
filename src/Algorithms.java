@@ -89,7 +89,6 @@ public class Algorithms {
     int[] c = new int[m + 1];
     int[] w = new int[tam];
     for (int i = 0; i < tam; i++) {
-      // TODO : DUDA, esta operacion se cuenta como asignacion?.
       c[v[i]] = c[v[i]] + 1;
       data.incrementarAsigs(1);
     }
@@ -98,7 +97,6 @@ public class Algorithms {
     }
     for (int i = tam - 1; i >= 0; i--) {
       w[c[v[i]] - 1] = v[i];
-      // TODO : DUDA, esta operacion se cuenta como asignacion?.
       c[v[i]] = c[v[i]] - 1;
       data.incrementarAsigs(2);
     }

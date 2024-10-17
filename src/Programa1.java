@@ -26,7 +26,7 @@ public class Programa1 {
   /**
    * Tamaño vector máximo
    */
-  protected static int TAM_MAX = 1000000;
+  protected static int TAM_MAX = 100000;
 
   /**
    * Programa de la parte 1 de la práctica
