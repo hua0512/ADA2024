@@ -138,8 +138,7 @@ public class Programa1 {
       data3.setComps(0);
       data3.setTime(0);
 
-      if (TAM > 100000) TAM += 500000;
-      else TAM += 10000;
+      TAM += 10000;
     }
 
     // escribimos los resultados

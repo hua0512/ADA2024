@@ -98,7 +98,7 @@ public class Algorithms {
     for (int i = tam - 1; i >= 0; i--) {
       w[c[v[i]] - 1] = v[i];
       c[v[i]] = c[v[i]] - 1;
-      data.incrementarAsigs(2);
+      data.incrementarAsigs(1);
     }
     for (int i = 0; i < tam; i++) {
       v[i] = w[i];
@@ -109,6 +109,7 @@ public class Algorithms {
   private static int h(int[] v, int tam, TraceData data) {
     int i;
     int m = v[0];
+    data.incrementarAsigs();
     for (i = 1; i < tam; i++) {
       data.incrementarComps();
       if (v[i] > m) {
