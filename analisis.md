@@ -134,4 +134,16 @@ siendo las gráficas:
 
 ## Tiempo de ejecución
 
+Se obtiene las gráficas de tiempo de ejecución para cada algoritmo:
+
+![img.png](results/TiempoEjecucion1.png)
+![TiempoEjecucion2.png](results%2FTiempoEjecucion2.png)
+![TiempoEjecucion3.png](results%2FTiempoEjecucion3.png)
+
+Para el primer algoritmo, observamos que los resultados tienden a una secuencia polinómica y así lo confirma excel al calcular la linea de tendencia,
+obteniendo una R^2 = 1 con ecuación de la curva de ajuste de la forma: `y = 0.2308x^2 + 611.21 - 7E+06`, y mediante la regla de conjuntos de cotas
+podemos obtener lo siguiente: `O(0.2308n^2 + 611.21n - 7E+06)` = **O(n^2)**. Por lo que el algoritmo 1 pertenece a **O(n^2)**.
+
+Para el segundo algoritmo, los resultados crecen de forma lineal más lentamente, pero sin llegar a ser constante, y sospechamos que
+
 # Conclusión
