@@ -43,17 +43,9 @@ public class Programa1 {
 
 
     // Cabezera del fichero
-    String prefixBuilder = "Tam vector," +
-            "Comparaciones, " +
-            "Asignaciones," +
-            "Media," +
-            "Tiempo(ns)\n";
+    String prefixBuilder = "Tam vector,Comparaciones,Asignaciones,Media,Tiempo(ns),Algoritmo\n";
+
     StringBuilder resultStringBuilder = new StringBuilder(prefixBuilder);
-    resultStringBuilder.insert(0, "Algoritmo 1\n");
-
-    StringBuilder resultStringBuilder2 = new StringBuilder("Algoritmo 2\n");
-    StringBuilder resultStringBuilder3 = new StringBuilder("Algoritmo 3\n");
-
 
     // vector de enteros
     int[] vector;
@@ -111,21 +103,24 @@ public class Programa1 {
               .append(mediaComps1).append(',')
               .append(mediaAsigs1).append(',')
               .append(media1).append(',')
-              .append(mediaTime1)
+              .append(mediaTime1).append(',')
+              .append("Algoritmo 1")
               .append("\n");
 
-      resultStringBuilder2.append(TAM).append(',')
+      resultStringBuilder.append(TAM).append(',')
               .append(mediaComps2).append(',')
               .append(mediaAsigs2).append(',')
               .append(media2).append(',')
-              .append(mediaTime2)
+              .append(mediaTime2).append(',')
+              .append("Algoritmo 2")
               .append("\n");
 
-      resultStringBuilder3.append(TAM).append(',')
+      resultStringBuilder.append(TAM).append(',')
               .append(mediaComps3).append(',')
               .append(mediaAsigs3).append(',')
               .append(media3).append(',')
-              .append(mediaTime3)
+              .append(mediaTime3).append(',')
+              .append("Algoritmo 3")
               .append("\n");
 
       data1.setAsigs(0);
@@ -138,11 +133,12 @@ public class Programa1 {
       data3.setComps(0);
       data3.setTime(0);
 
-      TAM += 10000;
+      if (TAM >= 100000) TAM += 20000;
+      else TAM += 10000;
     }
 
     // escribimos los resultados
-    outputResults(resultFile, resultStringBuilder + "\n" + resultStringBuilder2 + "\n" + resultStringBuilder3);
+    outputResults(resultFile, resultStringBuilder.toString());
   }
 
 
