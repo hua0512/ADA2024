@@ -26,8 +26,6 @@ herramientas como Microsoft Excel, GeoGebra y Python.
 
 Los resultados obtenidos son los siguientes:
 
-## Algoritmo 1
-
 | Tamaño del vector | Comparaciones | Asignaciones | Media       | Tiempo medio(ns) | Algoritmo   |
 |-------------------|---------------|--------------|-------------|------------------|-------------|
 | 10000             | 25061862      | 75155590     | 50108726    | 25031115         | Algoritmo 1 |
