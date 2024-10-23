@@ -1,11 +1,10 @@
 # Objetivo
 
-El objetivo de esta práctica es comparar la eficiencia en caso promedio de los 3 algoritmos de ordenamiento dados, y a
+El objetivo de esta práctica es comparar la eficiencia, en caso promedio de los 3 algoritmos de ordenamiento dados, y a
 partir de los resultados
 obtenidos
-empiricamente, obtener una curva de ajuste que nos permita obtener su complejidad en caso promedio, y por ultimo,
-seleccionar el algoritmo más
-eficiente.
+empiricamente, se busca determinar una curva de ajuste que nos permita obtener su eficiencia, y por último, seleccionar
+el algoritmo más eficiente.
 
 # Práctica
 
@@ -13,15 +12,15 @@ Para llevar a cabo esta práctica, se ha desarrollado un programa que registra l
 comparaciones y asignaciones, así como el promedio de ambas y los tiempos de ejecución de los algoritmos de
 ordenamiento.
 
-El programa genera vectores de tamaño ( n ), comenzando desde 10,000 hasta 160,000, con incrementos de 10,000 hasta
-100,000, y posteriormente incrementos de 20,000. Antes de cada proceso de ordenamiento, los vectores se desordenan
-utilizando el algoritmo de Fisher-Yates.
+El programa genera vectores de tamaño variable (n), comenzando con 10,000 elementos y aumentando en intervalos de 10,000
+hasta alcanzar 100,000 elementos. Posteriormente, los incrementos son de 20,000 elementos hasta un máximo de 160,000.
+Antes de cada proceso de ordenamiento, los vectores son desordenados utilizando el algoritmo de Fisher-Yates.
 
-Para cada tamaño de vector, se realizarán 20 pruebas por cada algoritmo. Al final de las pruebas se calculará el
+Para cada tamaño de vector, se realizan 20 pruebas por cada algoritmo. Al final de las pruebas se calcula el
 promedio de las métricas mencionadas anteriormente.
 
-Los resultados se almacenarán en un archivo `Result.csv`, que servirá como base para un análisis detallado utilizando
-Microsoft Excel, GeoGebra y Python.
+Los resultados se almacenan en un archivo `Result.csv`, el cual se utilizará para un análisis detallado mediante
+herramientas como Microsoft Excel, GeoGebra y Python.
 
 # Resultados
 
@@ -135,7 +134,7 @@ Con la misma conclusión que en el caso de las comparaciones, el algoritmo 3 es 
 
 ![Promedio.png](results/Promedio.png)
 
-Siendo el promedio de comparaciones y asignaciones la suma de ambos dividido entre 2, podemos llegar a las mismas
+Siendo el promedio de comparaciones y asignaciones la suma de ambas dividido entre 2, podemos llegar a las mismas
 conclusiones que en los casos anteriores:
 
 Sea el conjunto de cotas de las comparaciones y asignaciones para cada algoritmo:
@@ -155,52 +154,53 @@ el más eficiente en promedio de operaciones elementales, seguido del algoritmo 
 
 ## Tiempo de ejecución
 
-Se obtiene las gráficas de tiempo de ejecución en nanosegundos para cada algoritmo:
-
 ![img.png](results/TiempoEjecucion1.png)
-![TiempoEjecucion2.png](results/TiempoEjecucion2.png)
-![TiempoEjecucion3.png](results/TiempoEjecucion3.png)
 
-Para el primer algoritmo, observamos que su grafica tiende a una curva polinómica cuadrática, y asi lo confirma su
+Para el primer algoritmo, observamos que su gráfica tiende a una curva polinómica cuadrática, y asi lo confirma su
 ecuación de la línea de ajuste: `y = 0.24x^2 + 732.16x - 12925459.86`.
 
 Aplicando la regla de conjuntos de cotas, tenemos que: `O(0.24n^2 + 732.16n - 12925459.86) = O(n^2)`.
 
 Por lo tanto, la eficiencia del algoritmo 1 es de orden **O(n^2)**.
 
-Para el segundo algoritmo, sospechamos que la grafica tiende a una curva lineal, y asi lo confirma su ecuación de la
-línea de ajuste: `y = 73.31x - 454588.87`.
+![TiempoEjecucion2.png](results/TiempoEjecucion2.png)
 
-Sin embargo, analizando el algoritmo 2 en detalle, vemos que selecciona una constante k determinada y la eficiencia de
-ese proceso ya es de orden O(n).
+En cuanto a la complejidad temporal del algoritmo 2, su rendimiento es notablemente superior al del algoritmo 1, debido
+a una menor cantidad de comparaciones y asignaciones realizadas. Esto sugiere que el algoritmo 2 utiliza una estrategia
+más eficiente para reducir el número de operaciones necesarias para ordenar los elementos, lo que se ve reflejado en
+tiempos de ejecución más cortos.
 
-A continuación, el algoritmo usa dos bucles anidados, lo que descarta la posibilidad de que sea de orden O(n).
+Inicialmente, se intentó aproximar la complejidad temporal mediante una curva de ajuste de orden `O(n)`, utilizando la
+ecuación `y = 73.31x - 454588.87`, la cual mostró resultados razonables en ciertos rangos de datos.
 
-Este hecho nos recurre a buscar una curva de ajuste de orden `O(n log n)`, y obtenemos la siguiente ecuación:
-`y = 13.83x * log(x) - 98657.70.`
+No obstante, un análisis más profundo del algoritmo revela que su eficiencia depende de la selección de una constante
+`k` en un proceso de orden `O(n)`. Y posteriormente, el uso de dos bucles anidados descarta la posibilidad
+de que su complejidad total sea de orden `O(n)`.
 
-Se observa en la gráfica que la curva de ajuste `n * log(n)` se ajusta mejor a los datos obtenidos, y también lo
-confirma
-los coeficientes de determinación de ambas curvas de ajuste:
+Este hallazgo nos lleva a reconsiderar el ajuste de la curva y buscar una aproximación de complejidad `O(n log n)`, cuya
+ecuación es `y = 13.83x * log(x) - 98657.70`. Esta nueva curva de ajuste demuestra ser más precisa, especialmente para
+tamaños de vector superiores a 100,000 elementos.
+
+![TiempoEjecucion(ajuste2).png](results/TiempoEjecucion(ajuste2).png)
+
+Su validez se refuerza al comparar los coeficientes de determinación de ambas curvas:
 
 - R^2 de la curva de ajuste de orden `O(n * log (n))`: **0.9987**
 - R^2 de la curva de ajuste de orden `O(n)` lineal: **0.9976**
 
-Además, se observa en la gráfica que la curva de ajuste `n * log(n)` se ajusta mejor a los datos obtenidos.
+Dado que el ajuste de la curva `O(n log (n))` es más preciso, se concluye, aplicando la regla de conjunto de cotas, que
+la
+eficiencia del algoritmo 2 se puede expresar como O(13.83n log(n) - 98657.70), lo cual confirma que su eficiencia es de
+orden **O(n log n)**.
 
-Por lo tanto, aplicando la regla de conjunto de cotas,
-la eficiencia del algoritmo 2 = O(13.83n * log(n) - 98657.70) = **O(n log (n))**.
+![TiempoEjecucion3.png](results/TiempoEjecucion3.png)
 
-![TiempoEjecucion(ajuste2).png](results/TiempoEjecucion(ajuste2).png)
+En el caso del tercer algoritmo, la dispersión de los datos dificulta la observación de una tendencia clara en la
+gráfica obtenida. No obstante, puede apreciarse que la eficiencia del algoritmo presenta una relación positiva con el
+tamaño del vector. Para vectores de tamaño inferior a 80,000, la eficiencia mejora considerablemente.
 
-Por último, para el tercer algoritmo, no podemos observar una clara tendencia en la gráfica.
-
-Podemos observar en la gráfica que el algoritmo crece de forma positiva. Además, para tamaños de vector menores que
-80000, la eficiencia del algoritmo es bastante menor y optimizada.
-
-Tras analizar el algoritmo 3 en detalle, se puede observar que usa 3 bucles externos `for` externos desde 0 hasta n (
-tamaño del vector), y otro bucle `for` desde 1 hasta una variable `m` seleccionada por el primer bucle `for` (máximo
-elemento del vector).
+Un analisis detallado del algoritmo revela que su estructura incluye 3 bucles externos `for` desde 0 hasta n, y otro
+bucle externo `for` desde 1 hasta una variable `m` seleccionada por el primer bucle `for` (máximo elemento del vector).
 
 Por lo tanto, la eficiencia del algoritmo 3 se descompone en:
 
@@ -209,25 +209,26 @@ Por lo tanto, la eficiencia del algoritmo 3 se descompone en:
 - Para el tercer bucle `for`: O(m)
 - Para el cuarto bucle `for`: O(n)
 
-Y la suma de todas las eficiencias es de orden O(n + n + m + n) = O(3n + m) = O(n + m).
+Sumando todas las complejidades, se obtiene un comportamiento de orden O(n + n + m + n) = O(3n + m) = O(n + m).
 
-Con esto, afirmamos que la eficiencia del algoritmo 3 es de orden **O(n + m)**, siendo m el máximo elemento del vector y
-n el tamaño del vector.
+Con esto, podemos afirmar que la eficiencia del algoritmo 3 es de orden **O(n + m)**, siendo m el máximo elemento del
+vector y n el tamaño del vector.
 
-Como se dijo anteriormente, no es posible obtener una curva de ajuste precisa para el algoritmo 3, aun así, intentamos
-dejar una curva que más se aproxime a los datos obtenidos con R^2 = **0.61630**.
+Una aproximación de los datos obtenidos se puede ajustar a la línea de tendencia `y = 3.64x + 22527.42` con un
+coeficiente de determinación: R^2 = **0.61630**.
 
 ![TiempoEjecucion(ajuste3).png](results/TiempoEjecucion(ajuste3).png)
 
+Finalmente, aplicando el conjunto de cotas, podemos obtener: `O(3.64n + 22527.42)  = O(3n + m) = O(n + m)` , que
+afirma nuestra conclusión.
+
 # Conclusión
 
-A partir de los resultados obtenidos, se puede concluir que el algoritmo más eficiente es el algoritmo 3, seguido del 2
-y por último el 1.
-Tamnbién se puede afirmar que en cuanto a las operaciones elementales, el orden de eficiencia de los algoritmos es el
-mismo.
+Con base en los resultados obtenidos, se concluye que el algoritmo más eficiente es el algoritmo 3, seguido del
+algoritmo 2, y finalmente el algoritmo 1. Esta clasificación se mantiene tanto en términos de tiempo de ejecución como
+en operaciones elementales (comparaciones y asignaciones).
 
-Y por último, ha sido posible obtener las curvas de ajuste de eficiencia para los algoritmos. Sin embargo, la
-curva de ajuste para el algoritmo 3 es de baja precisión, y no se debería considerar como referencia debido a su alto
-margen de error.
+Asimismo, fue posible determinar las curvas de ajuste de eficiencia para los tres algoritmos, aunque la precisión de la
+curva para el algoritmo 3 es baja, y su eficiencia está condicionada por el valor de `m`.
 
 # Referencias
